@@ -1,10 +1,16 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'node:20'
+        }
+    }
 
     stages {
-        stage('Checkout Test') {
+        stage('Check Node') {
             steps {
-                echo 'Jenkinsfile loaded from GitHub!'
+                sh 'node -v'
+                sh 'npm -v'
+                sh 'pwd'
                 sh 'ls -la'
             }
         }
